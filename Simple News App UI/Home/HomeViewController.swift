@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         tableView.dataSource = self
-        
+        tableView.rowHeight = UITableView.automaticDimension
     }
 }
 
