@@ -145,10 +145,39 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rrJ-R5-YK6">
-                                                    <rect key="frame" x="20" y="20" width="353" height="120"/>
+                                                    <rect key="frame" x="20" y="20" width="353" height="83"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Update)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8o4-lh-eTc">
+                                                            <rect key="frame" x="0.0" y="0.0" width="210" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EyN-cJ-pf3">
+                                                            <rect key="frame" x="0.0" y="30" width="59.333333333333336" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_news" translatesAutoresizingMaskIntoConstraints="NO" id="7ja-Vi-Pi3">
+                                                            <rect key="frame" x="270" y="0.0" width="83" height="83"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="83" id="hXv-oE-6yr"/>
+                                                                <constraint firstAttribute="height" constant="83" id="ywN-TY-JI7"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="7ja-Vi-Pi3" secondAttribute="bottom" id="5rH-TT-Dk6"/>
+                                                        <constraint firstItem="EyN-cJ-pf3" firstAttribute="leading" secondItem="rrJ-R5-YK6" secondAttribute="leading" id="6pS-86-FuJ"/>
+                                                        <constraint firstItem="7ja-Vi-Pi3" firstAttribute="top" secondItem="rrJ-R5-YK6" secondAttribute="top" id="D2z-Im-4D5"/>
+                                                        <constraint firstItem="8o4-lh-eTc" firstAttribute="top" secondItem="rrJ-R5-YK6" secondAttribute="top" id="Gkp-oj-tjr"/>
                                                         <constraint firstAttribute="height" constant="83" id="KBi-05-pft"/>
+                                                        <constraint firstItem="EyN-cJ-pf3" firstAttribute="top" secondItem="8o4-lh-eTc" secondAttribute="bottom" constant="10" id="Wyw-ap-n04"/>
+                                                        <constraint firstAttribute="trailing" secondItem="7ja-Vi-Pi3" secondAttribute="trailing" id="bLJ-Qp-hqy"/>
+                                                        <constraint firstItem="8o4-lh-eTc" firstAttribute="leading" secondItem="rrJ-R5-YK6" secondAttribute="leading" id="il0-In-w7Z"/>
+                                                        <constraint firstItem="7ja-Vi-Pi3" firstAttribute="leading" secondItem="8o4-lh-eTc" secondAttribute="trailing" constant="60" id="osK-Z0-DnR"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -156,10 +185,13 @@
                                             <constraints>
                                                 <constraint firstItem="rrJ-R5-YK6" firstAttribute="leading" secondItem="m3Q-a6-G6I" secondAttribute="leading" constant="20" id="00x-Kq-IJl"/>
                                                 <constraint firstAttribute="trailing" secondItem="rrJ-R5-YK6" secondAttribute="trailing" constant="20" id="0tf-TE-7fT"/>
-                                                <constraint firstAttribute="bottom" secondItem="rrJ-R5-YK6" secondAttribute="bottom" constant="20" id="3MR-M5-krZ"/>
                                                 <constraint firstItem="rrJ-R5-YK6" firstAttribute="top" secondItem="m3Q-a6-G6I" secondAttribute="top" constant="20" id="paL-x8-tW9"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="newsTitle" destination="8o4-lh-eTc" id="IsF-Un-1qo"/>
+                                            <outlet property="tagLabel" destination="EyN-cJ-pf3" id="wbF-EW-gAh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -191,6 +223,7 @@
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="home" width="22" height="22"/>
         <image name="home_selected" width="22" height="22"/>
+        <image name="image_news" width="249" height="249"/>
         <image name="img_home" width="360" height="132"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

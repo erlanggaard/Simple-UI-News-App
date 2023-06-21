@@ -84,11 +84,18 @@ extension HomeViewController: UITableViewDataSource {
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "new_news_cell", for: indexPath) as! NewNewsViewCell
-//            let attributedTagLabel = NSMutableAttributedString(
-//                string: "3 Hours • Architecture",
-//                attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
-//
-//            cell.judulLabel.attributedText = attributedTagLabel
+            
+            let attributedNewsTitle = NSMutableAttributedString(
+                string: "(Update) Iphone 13 Rumor New design?",
+                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.gray]
+            )
+            cell.newsTitle.attributedText = attributedNewsTitle
+            
+            let attributedTagLabel = NSMutableAttributedString(
+                string: "3 Hours • Architecture",
+                attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
+
+            cell.tagLabel.attributedText = attributedTagLabel
             return cell
         }
     }
