@@ -20,6 +20,8 @@
 		6249741F2A42BB5200999526 /* CovidNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6249741E2A42BB5200999526 /* CovidNewsViewCell.swift */; };
 		624974212A42D5CC00999526 /* TopNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624974202A42D5CC00999526 /* TopNewsViewCell.swift */; };
 		624974232A42FB5800999526 /* NewNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624974222A42FB5800999526 /* NewNewsViewCell.swift */; };
+		624974262A4343C700999526 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624974242A4343C700999526 /* NewsViewCell.swift */; };
+		624974272A4343C700999526 /* NewsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 624974252A4343C700999526 /* NewsViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		6249741E2A42BB5200999526 /* CovidNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidNewsViewCell.swift; sourceTree = "<group>"; };
 		624974202A42D5CC00999526 /* TopNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNewsViewCell.swift; sourceTree = "<group>"; };
 		624974222A42FB5800999526 /* NewNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNewsViewCell.swift; sourceTree = "<group>"; };
+		624974242A4343C700999526 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
+		624974252A4343C700999526 /* NewsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 				624974092A42A29200999526 /* Assets.xcassets */,
 				6249740B2A42A29200999526 /* LaunchScreen.storyboard */,
 				6249740E2A42A29200999526 /* Info.plist */,
+				624974242A4343C700999526 /* NewsViewCell.swift */,
+				624974252A4343C700999526 /* NewsViewCell.xib */,
 			);
 			path = "Simple News App UI";
 			sourceTree = "<group>";
@@ -165,6 +171,7 @@
 				6249741B2A42AB2800999526 /* SearchNews.storyboard in Resources */,
 				6249740D2A42A29200999526 /* LaunchScreen.storyboard in Resources */,
 				6249740A2A42A29200999526 /* Assets.xcassets in Resources */,
+				624974272A4343C700999526 /* NewsViewCell.xib in Resources */,
 				624974082A42A29000999526 /* Main.storyboard in Resources */,
 				624974182A42A89600999526 /* Home.storyboard in Resources */,
 			);
@@ -180,6 +187,7 @@
 				624974212A42D5CC00999526 /* TopNewsViewCell.swift in Sources */,
 				624974052A42A29000999526 /* ViewController.swift in Sources */,
 				624974232A42FB5800999526 /* NewNewsViewCell.swift in Sources */,
+				624974262A4343C700999526 /* NewsViewCell.swift in Sources */,
 				6249741F2A42BB5200999526 /* CovidNewsViewCell.swift in Sources */,
 				624974012A42A29000999526 /* AppDelegate.swift in Sources */,
 				624974032A42A29000999526 /* SceneDelegate.swift in Sources */,
@@ -337,6 +345,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -369,6 +378,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

@@ -20,15 +20,19 @@ class HomeViewController: UIViewController {
     var itemGroups: [HomeItemGroup] = [.covid, .topNews, .news]
     var covidNews: [Any] = [1]
     var topNews: [Any] = [1]
-    var newsNew: [Any] = [1]
+    var newsNew: [Any] = [1, 2, 3, 4, 5]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+//        tableView.register(NewsViewCell.self, forCellReuseIdentifier: "news_view_cell")
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    @IBAction func buttonProfilePressed(_ sender: UIButton) {
+        print("Button Pressed!")
     }
 }
 
@@ -76,26 +80,29 @@ extension HomeViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "news_cell", for: indexPath) as! TopNewsViewCell
             
             let attributedTagLabel = NSMutableAttributedString(
-                string: "3 Hours • Architecture",
+                string: "3 Minutes • Architecture",
                 attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
             
             cell.labelTag.attributedText = attributedTagLabel
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "new_news_cell", for: indexPath) as! NewNewsViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "news_new_cell", for: indexPath) as! NewNewsViewCell
             
             let attributedNewsTitle = NSMutableAttributedString(
-                string: "(Update) Iphone 13 Rumor New design?",
-                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.gray]
+                string: "(Update) iPhone 13 Rumour New Design?",
+                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.black]
             )
             cell.newsTitle.attributedText = attributedNewsTitle
             
             let attributedTagLabel = NSMutableAttributedString(
-                string: "3 Hours • Architecture",
+                string: "7 Minutes • Technology",
                 attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
 
             cell.tagLabel.attributedText = attributedTagLabel
+            cell.topConstraint.constant = indexPath.row == 0 ? 20 : 10
+            cell.bottomConstraint.constant = indexPath.row == newsNew.count - 1 ? 20 : 10
+
             return cell
         }
     }
