@@ -1,5 +1,5 @@
 //
-//  NewNewsViewCell.swift
+//  NewsViewCell.swift
 //  Simple News App UI
 //
 //  Created by Erlangga Ardiansyah on 21/06/23.
@@ -7,12 +7,14 @@
 
 import UIKit
 
-class NewNewsViewCell: UITableViewCell {
+class NewsViewCell: UITableViewCell {
 
-    @IBOutlet weak var newsTitle: UILabel!
-    @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var titleLabelNews: UILabel!
+    @IBOutlet weak var tagLabelNews: UILabel!
+    @IBOutlet weak var thumbImages: UIImageView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +26,5 @@ class NewNewsViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

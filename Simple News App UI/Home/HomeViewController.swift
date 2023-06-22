@@ -19,13 +19,14 @@ class HomeViewController: UIViewController {
     
     var itemGroups: [HomeItemGroup] = [.covid, .topNews, .news]
     var covidNews: [Any] = [1]
-    var topNews: [Any] = [1]
-    var newsNew: [Any] = [1, 2, 3, 4, 5]
+    var topNews: [Any] = [1, 2]
+    var newsNew: [Any] = [1, 2, 3]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        tableView.register(NewsViewCell.self, forCellReuseIdentifier: "news_view_cell")
+        // Register XIB
+        tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "news_view_cell")
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         
@@ -87,31 +88,71 @@ extension HomeViewController: UITableViewDataSource {
         else if group == .topNews {
             let cell = tableView.dequeueReusableCell(withIdentifier: "news_cell", for: indexPath) as! TopNewsViewCell
             
-            let attributedTagLabel = NSMutableAttributedString(
-                string: "3 Minutes • Architecture",
-                attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
+            cell.collectionView.dataSource = self
+            cell.collectionView.delegate = self
+            cell.collectionView.reloadData()
             
-            cell.labelTag.attributedText = attributedTagLabel
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "news_new_cell", for: indexPath) as! NewNewsViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "news_view_cell", for: indexPath) as! NewsViewCell
             
             let attributedNewsTitle = NSMutableAttributedString(
                 string: "(Update) iPhone 13 Rumour New Design?",
                 attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.black]
             )
-            cell.newsTitle.attributedText = attributedNewsTitle
+            cell.titleLabelNews.attributedText = attributedNewsTitle
             
             let attributedTagLabel = NSMutableAttributedString(
                 string: "7 Minutes • Technology",
                 attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
-
-            cell.tagLabel.attributedText = attributedTagLabel
+            cell.tagLabelNews.attributedText = attributedTagLabel
+            
+            cell.thumbImages.image = UIImage(named: "image_news")
+            
             cell.topConstraint.constant = indexPath.row == 0 ? 20 : 10
             cell.bottomConstraint.constant = indexPath.row == newsNew.count - 1 ? 20 : 10
 
             return cell
         }
+    }
+}
+
+extension HomeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return topNews.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "top_news_cell", for: indexPath) as! TopNewsCollectionViewCell
+        
+        cell.imageView.image = UIImage(named: "img_home")
+        
+        // TITLE NEWS
+        let newsLabelAttributed = NSMutableAttributedString(
+            string: "Dream home design inspiration for you in the future.",
+            attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.black]
+        )
+        cell.titleNews.attributedText = newsLabelAttributed
+        
+        // TAG NEWS LABEL
+        let attributedTagLabel = NSMutableAttributedString(
+            string: "3 Minutes • Architecture",
+            attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
+        
+        cell.tagNews.attributedText = attributedTagLabel
+
+        
+        return cell
+    }
+    
+    
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = UIScreen.main.bounds.width
+        return CGSize(width: width, height: 270)
     }
 }

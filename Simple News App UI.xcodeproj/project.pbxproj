@@ -19,13 +19,13 @@
 		6249741D2A42AB4100999526 /* SearchNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6249741C2A42AB4100999526 /* SearchNewsViewController.swift */; };
 		6249741F2A42BB5200999526 /* CovidNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6249741E2A42BB5200999526 /* CovidNewsViewCell.swift */; };
 		624974212A42D5CC00999526 /* TopNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624974202A42D5CC00999526 /* TopNewsViewCell.swift */; };
-		624974232A42FB5800999526 /* NewNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624974222A42FB5800999526 /* NewNewsViewCell.swift */; };
 		624974262A4343C700999526 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624974242A4343C700999526 /* NewsViewCell.swift */; };
 		624974272A4343C700999526 /* NewsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 624974252A4343C700999526 /* NewsViewCell.xib */; };
 		62E9BC0C2A441B5000393675 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E9BC0B2A441B5000393675 /* Notification.storyboard */; };
 		62E9BC0E2A441B7900393675 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E9BC0D2A441B7900393675 /* NotificationViewController.swift */; };
 		62E9BC112A441BCC00393675 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E9BC102A441BCC00393675 /* SummaryViewController.swift */; };
 		62E9BC132A441BD700393675 /* Summary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E9BC122A441BD700393675 /* Summary.storyboard */; };
+		62E9BC152A44353200393675 /* TopNewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E9BC142A44353200393675 /* TopNewsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,13 +43,13 @@
 		6249741C2A42AB4100999526 /* SearchNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNewsViewController.swift; sourceTree = "<group>"; };
 		6249741E2A42BB5200999526 /* CovidNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidNewsViewCell.swift; sourceTree = "<group>"; };
 		624974202A42D5CC00999526 /* TopNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNewsViewCell.swift; sourceTree = "<group>"; };
-		624974222A42FB5800999526 /* NewNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNewsViewCell.swift; sourceTree = "<group>"; };
 		624974242A4343C700999526 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 		624974252A4343C700999526 /* NewsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewCell.xib; sourceTree = "<group>"; };
 		62E9BC0B2A441B5000393675 /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
 		62E9BC0D2A441B7900393675 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		62E9BC102A441BCC00393675 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		62E9BC122A441BD700393675 /* Summary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Summary.storyboard; sourceTree = "<group>"; };
+		62E9BC142A44353200393675 /* TopNewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNewsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +93,6 @@
 				624974092A42A29200999526 /* Assets.xcassets */,
 				6249740B2A42A29200999526 /* LaunchScreen.storyboard */,
 				6249740E2A42A29200999526 /* Info.plist */,
-				624974242A4343C700999526 /* NewsViewCell.swift */,
-				624974252A4343C700999526 /* NewsViewCell.xib */,
 			);
 			path = "Simple News App UI";
 			sourceTree = "<group>";
@@ -106,7 +104,9 @@
 				624974152A42A88400999526 /* HomeViewController.swift */,
 				6249741E2A42BB5200999526 /* CovidNewsViewCell.swift */,
 				624974202A42D5CC00999526 /* TopNewsViewCell.swift */,
-				624974222A42FB5800999526 /* NewNewsViewCell.swift */,
+				62E9BC142A44353200393675 /* TopNewsCollectionViewCell.swift */,
+				624974252A4343C700999526 /* NewsViewCell.xib */,
+				624974242A4343C700999526 /* NewsViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -216,8 +216,8 @@
 			files = (
 				62E9BC0E2A441B7900393675 /* NotificationViewController.swift in Sources */,
 				624974212A42D5CC00999526 /* TopNewsViewCell.swift in Sources */,
+				62E9BC152A44353200393675 /* TopNewsCollectionViewCell.swift in Sources */,
 				624974052A42A29000999526 /* ViewController.swift in Sources */,
-				624974232A42FB5800999526 /* NewNewsViewCell.swift in Sources */,
 				62E9BC112A441BCC00393675 /* SummaryViewController.swift in Sources */,
 				624974262A4343C700999526 /* NewsViewCell.swift in Sources */,
 				6249741F2A42BB5200999526 /* CovidNewsViewCell.swift in Sources */,
