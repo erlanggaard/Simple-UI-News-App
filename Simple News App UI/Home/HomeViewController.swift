@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     var itemGroups: [HomeItemGroup] = [.covid, .topNews, .news]
     var covidNews: [Any] = [1]
     var topNews: [Any] = [1, 2]
-    var newsNew: [Any] = [1, 2, 3]
+    var newsNew: [Any] = [1, 2]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +30,10 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "person.fill"), for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+        // BUTTON PROFILE
+        let button = UIButton()
+        button.setImage(UIImage(named: "user_circle_40"), for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         button.addTarget(self, action: #selector(self.buttonProfilePressed(_:)), for: .touchUpInside)
         
         let barItem = UIBarButtonItem(customView: button)
@@ -51,6 +52,7 @@ extension HomeViewController: UITableViewDataSource {
         return itemGroups.count
     }
     
+    // BERAPA CELL YANG MAU DITAMPILKAN DALAM SECTION
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let group = itemGroups[section]
         
@@ -58,7 +60,7 @@ extension HomeViewController: UITableViewDataSource {
         case .covid:
             return covidNews.count
         case .topNews:
-            return topNews.count
+            return 1
         case .news:
             return newsNew.count
         }
