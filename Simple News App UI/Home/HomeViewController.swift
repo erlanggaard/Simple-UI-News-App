@@ -25,10 +25,18 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
 //        tableView.register(NewsViewCell.self, forCellReuseIdentifier: "news_view_cell")
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
+        
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "person.fill"), for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+        button.addTarget(self, action: #selector(self.buttonProfilePressed(_:)), for: .touchUpInside)
+        
+        let barItem = UIBarButtonItem(customView: button)
+        navigationItem.rightBarButtonItem = barItem
+        
     }
     
     @IBAction func buttonProfilePressed(_ sender: UIButton) {
