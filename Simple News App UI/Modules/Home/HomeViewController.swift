@@ -21,8 +21,8 @@ class HomeViewController: UIViewController {
     
     var itemGroups: [HomeItemGroup] = [.covid, .topNews, .news]
     var covidNews: [Any] = [1]
-    var topNews: [Any] = [1, 2, 3, 4]
-    var newsNew: [Any] = [1, 2, 3]
+    var topNews: [News] = []
+    var newsNew: [News] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +41,57 @@ class HomeViewController: UIViewController {
         let barItem = UIBarButtonItem(customView: button)
         navigationItem.rightBarButtonItem = barItem
         
+        loadTopNews()
+        loadNews()
+        
     }
     
+    //MARK: - HELPERS
+    func loadTopNews() {
+        topNews = [
+            News(title: "(Update) iPhone 13 Rumour New Design?",
+                 summary: "",
+                 tags: ["7 Hours", "Tech"],
+                 imageNews: "image_news_1"
+                ),
+            
+            News(title: "Dream home design inspiration for you in the futures.",
+                 summary: "",
+                 tags: ["3 Hours", "Architecture"],
+                 imageNews: "img_home"
+                ),
+            
+            News(title: "YouTube's new features, let's take a look",
+                 summary: "",
+                 tags: ["45 Mins", "Tech"],
+                 imageNews: "image_news"
+                )
+        ]
+    }
+    
+    func loadNews() {
+        newsNew = [
+            News(title: "(Update) iPhone 13 Rumour New Design?",
+                 summary: "",
+                 tags: ["7 Hours", "Tech"],
+                 imageNews: "image_news_1"
+                ),
+            
+            News(title: "Dream home design inspiration for you in the futures.",
+                 summary: "",
+                 tags: ["3 Hours", "Architecture"],
+                 imageNews: "img_home"
+                ),
+            
+            News(title: "YouTube's new features, let's take a look",
+                 summary: "",
+                 tags: ["45 Mins", "Tech"],
+                 imageNews: "image_news"
+                )
+        ]
+    }
+    
+    // MARK: - ACTIONS
     @IBAction func buttonProfilePressed(_ sender: UIButton) {
         print("Button Pressed!")
     }
@@ -107,18 +156,19 @@ extension HomeViewController: UITableViewDataSource {
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "news_view_cell", for: indexPath) as! NewsViewCell
+            let news = newsNew[indexPath.item]
             
             let attributedNewsTitle = NSMutableAttributedString(
-                string: "(Update) iPhone 13 Rumour New Design?",
+                string: news.title ,
                 attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.black])
             cell.titleLabelNews.attributedText = attributedNewsTitle
             
             let attributedTagLabel = NSMutableAttributedString(
-                string: "7 Minutes • Technology",
+                string: news.tags.joined(separator: " • "),
                 attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
             cell.tagLabelNews.attributedText = attributedTagLabel
             
-            cell.thumbImages.image = UIImage(named: "image_news")
+            cell.thumbImages.image = UIImage(named: news.imageNews)
             
             cell.topConstraint.constant = indexPath.row == 0 ? 20 : 10
             cell.bottomConstraint.constant = indexPath.row == newsNew.count - 1 ? 20 : 10
@@ -136,19 +186,20 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "top_news_cell", for: indexPath) as! TopNewsCollectionViewCell
+        let topNews = topNews[indexPath.item]
         
-        cell.imageView.image = UIImage(named: "img_home")
+        cell.imageView.image = UIImage(named: topNews.imageNews)
         
         // TITLE NEWS
         let newsLabelAttributed = NSMutableAttributedString(
-            string: "Dream home design inspiration for you in the future.",
+            string: topNews.title,
             attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.black]
         )
         cell.titleNews.attributedText = newsLabelAttributed
         
         // TAG NEWS LABEL
         let attributedTagLabel = NSMutableAttributedString(
-            string: "3 Minutes • Architecture",
+            string: topNews.tags.joined(separator: " • "),
             attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
         
         cell.tagNews.attributedText = attributedTagLabel
@@ -158,11 +209,13 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    // Define size of Collection View
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
         return CGSize(width: width, height: 270)
     }
     
+    // Page Control Logic
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == self.topNewsCollectionView {
             let page = scrollView.contentOffset.x / scrollView.frame.width

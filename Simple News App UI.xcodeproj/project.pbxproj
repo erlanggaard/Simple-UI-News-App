@@ -21,6 +21,7 @@
 		624974212A42D5CC00999526 /* TopNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624974202A42D5CC00999526 /* TopNewsViewCell.swift */; };
 		624974262A4343C700999526 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624974242A4343C700999526 /* NewsViewCell.swift */; };
 		624974272A4343C700999526 /* NewsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 624974252A4343C700999526 /* NewsViewCell.xib */; };
+		62E6BB242A4543650096CA72 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6BB232A4543650096CA72 /* News.swift */; };
 		62E9BC0C2A441B5000393675 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E9BC0B2A441B5000393675 /* Notification.storyboard */; };
 		62E9BC0E2A441B7900393675 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E9BC0D2A441B7900393675 /* NotificationViewController.swift */; };
 		62E9BC112A441BCC00393675 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E9BC102A441BCC00393675 /* SummaryViewController.swift */; };
@@ -45,6 +46,7 @@
 		624974202A42D5CC00999526 /* TopNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNewsViewCell.swift; sourceTree = "<group>"; };
 		624974242A4343C700999526 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 		624974252A4343C700999526 /* NewsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewCell.xib; sourceTree = "<group>"; };
+		62E6BB232A4543650096CA72 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		62E9BC0B2A441B5000393675 /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
 		62E9BC0D2A441B7900393675 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		62E9BC102A441BCC00393675 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -82,10 +84,8 @@
 		624973FF2A42A29000999526 /* Simple News App UI */ = {
 			isa = PBXGroup;
 			children = (
-				624974142A42A86B00999526 /* Home */,
-				624974192A42AB1200999526 /* SearchNews */,
-				62E9BC0A2A441B2D00393675 /* Notification */,
-				62E9BC0F2A441BB900393675 /* Summary */,
+				62E6BB212A4542150096CA72 /* Modules */,
+				62E6BB222A4542640096CA72 /* Models */,
 				624974002A42A29000999526 /* AppDelegate.swift */,
 				624974022A42A29000999526 /* SceneDelegate.swift */,
 				624974042A42A29000999526 /* ViewController.swift */,
@@ -118,6 +118,25 @@
 				6249741C2A42AB4100999526 /* SearchNewsViewController.swift */,
 			);
 			path = SearchNews;
+			sourceTree = "<group>";
+		};
+		62E6BB212A4542150096CA72 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				624974142A42A86B00999526 /* Home */,
+				624974192A42AB1200999526 /* SearchNews */,
+				62E9BC0A2A441B2D00393675 /* Notification */,
+				62E9BC0F2A441BB900393675 /* Summary */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		62E6BB222A4542640096CA72 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				62E6BB232A4543650096CA72 /* News.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		62E9BC0A2A441B2D00393675 /* Notification */ = {
@@ -220,6 +239,7 @@
 				624974052A42A29000999526 /* ViewController.swift in Sources */,
 				62E9BC112A441BCC00393675 /* SummaryViewController.swift in Sources */,
 				624974262A4343C700999526 /* NewsViewCell.swift in Sources */,
+				62E6BB242A4543650096CA72 /* News.swift in Sources */,
 				6249741F2A42BB5200999526 /* CovidNewsViewCell.swift in Sources */,
 				624974012A42A29000999526 /* AppDelegate.swift in Sources */,
 				624974032A42A29000999526 /* SceneDelegate.swift in Sources */,
