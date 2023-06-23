@@ -16,11 +16,13 @@ enum HomeItemGroup {
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    weak var topNewsCollectionView: UICollectionView?
+    weak var pageControl: UIPageControl?
     
     var itemGroups: [HomeItemGroup] = [.covid, .topNews, .news]
     var covidNews: [Any] = [1]
-    var topNews: [Any] = [1, 2]
-    var newsNew: [Any] = [1, 2]
+    var topNews: [Any] = [1, 2, 3, 4]
+    var newsNew: [Any] = [1, 2, 3]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +48,11 @@ class HomeViewController: UIViewController {
     }
 }
 
+// Manage Table View Datasource
 extension HomeViewController: UITableViewDataSource {
-    
+    // Jumlah section di table view
     func numberOfSections(in tableView: UITableView) -> Int {
-        return itemGroups.count
+        return itemGroups.count // 3
     }
     
     // BERAPA CELL YANG MAU DITAMPILKAN DALAM SECTION
@@ -58,17 +61,19 @@ extension HomeViewController: UITableViewDataSource {
         
         switch group {
         case .covid:
-            return covidNews.count
+            return covidNews.count // 1 cell
         case .topNews:
             return 1
         case .news:
-            return newsNew.count
+            return newsNew.count // 3 cell
         }
     }
     
+    // Konfigurasi Isi pada setiap cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let group = itemGroups[indexPath.section]
         
+        // Section Covid
         if group == .covid {
             let cell = tableView.dequeueReusableCell(withIdentifier: "covid_cell", for: indexPath) as! CovidNewsViewCell
             let attributeText = NSMutableAttributedString(
@@ -81,10 +86,8 @@ extension HomeViewController: UITableViewDataSource {
                 attributes: [.font : UIFont.systemFont(ofSize: 16, weight: .regular),
                              .foregroundColor: UIColor.gray]
             ))
-            
             cell.covidLabelText.attributedText = attributeText
-//            cell.topConstraint.constant = indexPath.row == 0 ? 20 : 5
-//            cell.bottomConstraint.constant = indexPath.row == covidNews.count - 1 ? 20 : 5
+            
             return cell
         }
         else if group == .topNews {
@@ -94,6 +97,12 @@ extension HomeViewController: UITableViewDataSource {
             cell.collectionView.delegate = self
             cell.collectionView.reloadData()
             
+            self.topNewsCollectionView = cell.collectionView
+            
+            // Page Control
+            cell.pageControl.currentPage = 0
+            self.pageControl = cell.pageControl
+            
             return cell
         }
         else {
@@ -101,8 +110,7 @@ extension HomeViewController: UITableViewDataSource {
             
             let attributedNewsTitle = NSMutableAttributedString(
                 string: "(Update) iPhone 13 Rumour New Design?",
-                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.black]
-            )
+                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.black])
             cell.titleLabelNews.attributedText = attributedNewsTitle
             
             let attributedTagLabel = NSMutableAttributedString(
@@ -145,16 +153,20 @@ extension HomeViewController: UICollectionViewDataSource {
         
         cell.tagNews.attributedText = attributedTagLabel
 
-        
         return cell
     }
-    
-    
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
         return CGSize(width: width, height: 270)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == self.topNewsCollectionView {
+            let page = scrollView.contentOffset.x / scrollView.frame.width
+            pageControl?.currentPage = Int(page)
+        }
     }
 }
