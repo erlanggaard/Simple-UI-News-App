@@ -1,0 +1,6 @@
+framework module Pods_Simple_News_App_UI {
+  umbrella header "Pods-Simple News App UI-umbrella.h"
+
+  export *
+  module * { export * }
+}

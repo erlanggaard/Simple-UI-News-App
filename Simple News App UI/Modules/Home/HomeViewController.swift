@@ -48,47 +48,11 @@ class HomeViewController: UIViewController {
     
     //MARK: - HELPERS
     func loadTopNews() {
-        topNews = [
-            News(title: "(Update) iPhone 13 Rumour New Design?",
-                 summary: "",
-                 tags: ["7 Hours", "Tech"],
-                 imageNews: "image_news_1"
-                ),
-            
-            News(title: "Dream home design inspiration for you in the futures.",
-                 summary: "",
-                 tags: ["3 Hours", "Architecture"],
-                 imageNews: "img_home"
-                ),
-            
-            News(title: "YouTube's new features, let's take a look",
-                 summary: "",
-                 tags: ["45 Mins", "Tech"],
-                 imageNews: "image_news"
-                )
-        ]
+        NewsProvider.share.loadTopNews()
     }
     
     func loadNews() {
-        newsNew = [
-            News(title: "(Update) iPhone 13 Rumour New Design?",
-                 summary: "",
-                 tags: ["7 Hours", "Tech"],
-                 imageNews: "image_news_1"
-                ),
-            
-            News(title: "Dream home design inspiration for you in the futures.",
-                 summary: "",
-                 tags: ["3 Hours", "Architecture"],
-                 imageNews: "img_home"
-                ),
-            
-            News(title: "YouTube's new features, let's take a look",
-                 summary: "",
-                 tags: ["45 Mins", "Tech"],
-                 imageNews: "image_news"
-                )
-        ]
+        
     }
     
     // MARK: - ACTIONS
@@ -164,11 +128,11 @@ extension HomeViewController: UITableViewDataSource {
             cell.titleLabelNews.attributedText = attributedNewsTitle
             
             let attributedTagLabel = NSMutableAttributedString(
-                string: news.tags.joined(separator: " • "),
+                string: [news.section, "\(news.published_date)"].joined(separator: " • "),
                 attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
             cell.tagLabelNews.attributedText = attributedTagLabel
             
-            cell.thumbImages.image = UIImage(named: news.imageNews)
+//            cell.thumbImages.image = UIImage(named: news.imageNews)
             
             cell.topConstraint.constant = indexPath.row == 0 ? 20 : 10
             cell.bottomConstraint.constant = indexPath.row == newsNew.count - 1 ? 20 : 10
@@ -188,7 +152,7 @@ extension HomeViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "top_news_cell", for: indexPath) as! TopNewsCollectionViewCell
         let topNews = topNews[indexPath.item]
         
-        cell.imageView.image = UIImage(named: topNews.imageNews)
+//        cell.imageView.image = UIImage(named: topNews.imageNews)
         
         // TITLE NEWS
         let newsLabelAttributed = NSMutableAttributedString(
@@ -199,7 +163,7 @@ extension HomeViewController: UICollectionViewDataSource {
         
         // TAG NEWS LABEL
         let attributedTagLabel = NSMutableAttributedString(
-            string: topNews.tags.joined(separator: " • "),
+            string: [topNews.section, "\(topNews.published_date)"].joined(separator: " • "),
             attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
         
         cell.tagNews.attributedText = attributedTagLabel
@@ -209,6 +173,7 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    
     // Define size of Collection View
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
