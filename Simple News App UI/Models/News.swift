@@ -30,7 +30,9 @@ struct News: Decodable {
         self.title = try values.decodeIfPresent(String.self, forKey: .title) ?? ""
         self.abstract = try values.decodeIfPresent(String.self, forKey: .abstract) ?? ""
         self.section = try values.decodeIfPresent(String.self, forKey: .section) ?? ""
-        self.published_date = try values.decodeIfPresent(Date.self, forKey: .published_date) ?? Date(timeIntervalSince1970: 0)
+        
+        let dateString = try values.decodeIfPresent(String.self, forKey: .published_date) ?? ""
+        self.published_date = dateString.date(format: .date) ?? Date(timeIntervalSince1970: 0)
         
         // Ini code kalo enum case nya pengen beda
 //        let dateString = try container.decodeIfPresent(String.self, forKey: .date) ?? ""
@@ -39,4 +41,18 @@ struct News: Decodable {
 //        date = dateFormater.date(from: dateString) ?? Date(timeIntervalSince1970: 0)
     }
     
+}
+
+// MARK EXTENSION FOR DATE TO STRING
+enum DateFormat: String {
+    case date = "yyyy-MM-dd"
+    case dateTime = "yyyy-MM-dd HH:mm:ss"
+}
+
+extension String {
+    func date(format: DateFormat) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format.rawValue
+        return dateFormatter.date(from: self)
+    }
 }
