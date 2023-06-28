@@ -48,7 +48,17 @@ class HomeViewController: UIViewController {
     
     //MARK: - HELPERS
     func loadTopNews() {
-        NewsProvider.share.loadTopNews()
+        NewsProvider.share.loadTopNews { response in
+            switch response {
+            case .success(let news):
+                self.topNews = news
+                self.tableView.reloadData()
+                
+            case .failure(let error):
+//                print("Error load top news: \(error.localizedDescription)")
+                print(String(describing: error))
+            }
+        }
     }
     
     func loadNews() {
@@ -63,6 +73,7 @@ class HomeViewController: UIViewController {
 
 // Manage Table View Datasource
 extension HomeViewController: UITableViewDataSource {
+    
     // Jumlah section di table view
     func numberOfSections(in tableView: UITableView) -> Int {
         return itemGroups.count // 3

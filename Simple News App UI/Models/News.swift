@@ -19,17 +19,18 @@ struct News: Decodable {
         case title
         case abstract
         case section
-        case published_date // kalo mau beda bisa diisi valuenya ex case date = "published_date"
+        case published_date // kalo mau beda bisa diisi valuenya ex: date = "published_date"
     }
     
+    // constructor news
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0 // ini makesure supaya nilainya tidak nil jadi pake decodeifpresent
-        self.title = try container.decode(String.self, forKey: .title)
-        self.abstract = try container.decode(String.self, forKey: .abstract)
-        self.section = try container.decode(String.self, forKey: .section)
-        self.published_date = try container.decode(Date.self, forKey: .published_date)
+        self.id = try values.decodeIfPresent(Int.self, forKey: .id) ?? 0 // ini makesure supaya nilainya tidak nil jadi pake decodeifpresent
+        self.title = try values.decodeIfPresent(String.self, forKey: .title) ?? ""
+        self.abstract = try values.decodeIfPresent(String.self, forKey: .abstract) ?? ""
+        self.section = try values.decodeIfPresent(String.self, forKey: .section) ?? ""
+        self.published_date = try values.decodeIfPresent(Date.self, forKey: .published_date) ?? Date(timeIntervalSince1970: 0)
         
         // Ini code kalo enum case nya pengen beda
 //        let dateString = try container.decodeIfPresent(String.self, forKey: .date) ?? ""
