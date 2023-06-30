@@ -8,11 +8,12 @@
 import Foundation
 
 struct News: Decodable {
-    var id: Int
-    var title: String
-    var abstract: String
-    var section: String
-    var published_date: Date
+    let id: Int
+    let title: String
+    let abstract: String
+    let section: String
+    let published_date: Date
+    let media: [Media]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -20,6 +21,7 @@ struct News: Decodable {
         case abstract
         case section
         case published_date // kalo mau beda bisa diisi valuenya ex: date = "published_date"
+        case media
     }
     
     // constructor news
@@ -33,6 +35,7 @@ struct News: Decodable {
         
         let dateString = try values.decodeIfPresent(String.self, forKey: .published_date) ?? ""
         self.published_date = dateString.date(format: .date) ?? Date(timeIntervalSince1970: 0)
+        media = try values.decodeIfPresent([Media].self, forKey: .media) ?? []
         
         // Ini code kalo enum case nya pengen beda
 //        let dateString = try container.decodeIfPresent(String.self, forKey: .date) ?? ""

@@ -121,10 +121,13 @@ extension HomeViewController: UITableViewDataSource {
             cell.collectionView.delegate = self
             cell.collectionView.reloadData()
             
+            cell.subtitleLabel.text = "Top \(topNews.count) News of the day"
+            
             self.topNewsCollectionView = cell.collectionView
             
             // Page Control
             cell.pageControl.currentPage = 0
+            cell.pageControl.numberOfPages = topNews.count
             self.pageControl = cell.pageControl
             
             return cell
@@ -162,9 +165,21 @@ extension HomeViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "top_news_cell", for: indexPath) as! TopNewsCollectionViewCell
         let topNews = topNews[indexPath.item]
-        
-//        cell.imageView.image = UIImage(named: topNews.imageNews)
-        
+    
+        if let imageUrl = topNews.media.last?.mediaMetadata.last?.url,
+           let url = URL(string: imageUrl) {
+            
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url) {
+                    let image = UIImage(data: data)
+                    
+                    DispatchQueue.main.async {
+                        cell.imageView.image = image
+                    }
+                }
+            }
+        }
+                
         // TITLE NEWS
         let newsLabelAttributed = NSMutableAttributedString(
             string: topNews.title,
