@@ -62,7 +62,18 @@ class HomeViewController: UIViewController {
     }
     
     func loadNews() {
-        
+        NewsProvider.share.loadNews { response in
+            switch response {
+            case .success(let news):
+                self.newsNew = news
+                self.tableView.reloadData()
+                
+            case .failure(let error):
+//                print("Error load top news: \(error.localizedDescription)")
+                print(String(describing: error))
+            }
+        }
+
     }
     
     // MARK: - ACTIONS
@@ -85,7 +96,7 @@ extension HomeViewController: UITableViewDataSource {
         
         switch group {
         case .covid:
-            return covidNews.count // 1 cell
+            return 1
         case .topNews:
             return 1
         case .news:
@@ -114,6 +125,8 @@ extension HomeViewController: UITableViewDataSource {
             
             return cell
         }
+        
+        // Section Top News is Using Collection View
         else if group == .topNews {
             let cell = tableView.dequeueReusableCell(withIdentifier: "news_cell", for: indexPath) as! TopNewsViewCell
             
@@ -131,10 +144,14 @@ extension HomeViewController: UITableViewDataSource {
             self.pageControl = cell.pageControl
             
             return cell
+            
         }
+        
+        // News is Using Table View
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "news_view_cell", for: indexPath) as! NewsViewCell
             let news = newsNew[indexPath.item]
+//            let topNews = topNews[indexPath.item]
             
             let attributedNewsTitle = NSMutableAttributedString(
                 string: news.title ,
@@ -146,6 +163,20 @@ extension HomeViewController: UITableViewDataSource {
                 attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold), .foregroundColor: UIColor.gray])
             cell.tagLabelNews.attributedText = attributedTagLabel
             
+            if let imageUrl = news.media.last?.mediaMetadata.last?.url,
+               let url = URL(string: imageUrl) {
+                
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: url) {
+                        let image = UIImage(data: data)
+                        
+                        DispatchQueue.main.async {
+                            cell.thumbImages.image = image
+                        }
+                    }
+                }
+            }
+            
 //            cell.thumbImages.image = UIImage(named: news.imageNews)
             
             cell.topConstraint.constant = indexPath.row == 0 ? 20 : 10
@@ -156,16 +187,21 @@ extension HomeViewController: UITableViewDataSource {
     }
 }
 
+// Data Source Collection View
 extension HomeViewController: UICollectionViewDataSource {
+    
+    // Number of Section Collection View
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return topNews.count
     }
     
+    // Customize each cell in section
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "top_news_cell", for: indexPath) as! TopNewsCollectionViewCell
         let topNews = topNews[indexPath.item]
     
+        // LOAD IMAGE FROM API
         if let imageUrl = topNews.media.last?.mediaMetadata.last?.url,
            let url = URL(string: imageUrl) {
             
@@ -183,8 +219,7 @@ extension HomeViewController: UICollectionViewDataSource {
         // TITLE NEWS
         let newsLabelAttributed = NSMutableAttributedString(
             string: topNews.title,
-            attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.black]
-        )
+            attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: UIColor.black])
         cell.titleNews.attributedText = newsLabelAttributed
         
         // TAG NEWS LABEL
@@ -198,6 +233,8 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 
+
+// Collection View
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     // Define size of Collection View

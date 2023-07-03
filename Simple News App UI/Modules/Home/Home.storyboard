@@ -111,7 +111,7 @@
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lca-bC-i2X">
                                                     <rect key="frame" x="0.0" y="61" width="393" height="270"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="270" id="N9Q-0V-oZh"/>
                                                     </constraints>
@@ -165,6 +165,7 @@
                                                                     <constraint firstItem="bqs-im-9Fq" firstAttribute="top" secondItem="g2h-IP-knJ" secondAttribute="bottom" constant="10" id="uef-vs-ta1"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <size key="customSize" width="393" height="252"/>
                                                             <connections>
                                                                 <outlet property="imageView" destination="g2h-IP-knJ" id="QlI-yY-xgO"/>
@@ -176,7 +177,7 @@
                                                 </collectionView>
                                                 <pageControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Uk8-8k-J4N">
                                                     <rect key="frame" x="20" y="331" width="353" height="26"/>
-                                                    <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
+                                                    <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="currentPageIndicatorTintColor" systemColor="linkColor"/>
                                                 </pageControl>
                                             </subviews>
@@ -280,12 +281,6 @@
         <image name="logo_home" width="26.666666030883789" height="30"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

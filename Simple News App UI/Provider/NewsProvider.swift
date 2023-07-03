@@ -37,6 +37,23 @@ class NewsProvider {
     }
     
     func loadNews(completion: @escaping (Result<[News], Error>) -> Void) {
-        
+        AF.request("\(BASE_URL)/viewed/1.json",
+                   method: HTTPMethod.get,
+                   parameters: ["api-key": API_KEY]
+        ).responseData { dataResponse in
+            if let data = dataResponse.data {
+                do {
+                    let response = try JSONDecoder().decode(TopNewsResponse.self, from: data)
+                    completion(.success(response.results))
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            }
+            else {
+                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Oops! Something went wrong!"])
+                completion(.failure(error))
+            }
+        }
     }
 }
